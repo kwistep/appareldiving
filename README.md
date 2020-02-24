@@ -6,7 +6,7 @@
 
 | Feature  | AdidasParsingService | AdidasScrapingService |
 | ------------- | ------------- | ------------- |
-| Set up port  | - [X]  | [X] |
+| Set up port  | -[X]  | [X] |
 | Set up app name  | [X]  | [X] |
 | Eureka client  | [X]  | [X] |
 | Zull | []  | [] |
