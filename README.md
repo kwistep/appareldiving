@@ -1,6 +1,16 @@
 # appareldiving
 
-### Ports:
+### Ports
+
+| Application  | Port | 
+| ------------- | ------------- | 
+| DataScrapingService  | 8000..8009  |
+| AdidasDataParsingService  | 8010..8019  |
+| Eureka server  | 8761  |
+| Zuul Getaway  | 8765  |
+| Zipkin Tracing System  | 9411  |
+
+
 
 ### Dev checklist
 
