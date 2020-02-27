@@ -1,4 +1,4 @@
-package com.appareldiving.adidasdataparsing.feign;
+package com.appareldiving.adidasdataparsing.controller.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
