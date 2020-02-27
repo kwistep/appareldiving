@@ -32,7 +32,7 @@ public class LinkCollector implements ILinkCollector{
 
     private List<String> extractProductIds(String response)
     {
-        String[] productIds = StringUtils.substringsBetween(response, "roductId\\\":\\\"", "\\\",");
+        String[] productIds = StringUtils.substringsBetween(response, "productId\\\":\\\"", "\\\",");
         return Arrays.asList(productIds);
     }
 

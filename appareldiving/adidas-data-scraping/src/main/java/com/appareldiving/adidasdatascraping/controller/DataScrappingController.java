@@ -1,5 +1,7 @@
 package com.appareldiving.adidasdatascraping.controller;
 
+import com.appareldiving.adidasdatascraping.controller.feign.DataParsingServerProxy;
+import com.appareldiving.adidasdatascraping.dto.RequestData;
 import com.appareldiving.adidasdatascraping.service.ILinkCollector;
 import com.appareldiving.adidasdatascraping.util.exceptions.InputUrlIsNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,23 @@ public class DataScrappingController {
     @Autowired
     private ILinkCollector linkCollector;
 
+    @Autowired
+    private DataParsingServerProxy proxy;
+
     @GetMapping(path = "/adidas")
     public List<String> collectAndHandOnProductLinks() throws IOException, InputUrlIsNull {
-        return linkCollector.collectProductLinks(navigationLink);
+
+        List<String> links = linkCollector.collectProductLinks(navigationLink);
+
+        String productLink = links.get(0);
+
+        RequestData requestData = new RequestData();
+        requestData.setRequestId(1);
+        requestData.setLink(productLink);
+
+        proxy.getData(requestData);
+
+        return links;
     }
 
 
