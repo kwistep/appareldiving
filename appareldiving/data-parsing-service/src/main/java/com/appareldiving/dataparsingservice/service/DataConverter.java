@@ -3,7 +3,6 @@ package com.appareldiving.dataparsingservice.service;
 import com.appareldiving.dataparsingservice.dto.Product;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.TypeRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,6 @@ import java.util.List;
 
 @Service
 public class DataConverter implements IDataConverter{
-
-    private final TypeRef<List<String>> LIST_TYPEREF = new TypeRef<List<String>>() {
-    };
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
