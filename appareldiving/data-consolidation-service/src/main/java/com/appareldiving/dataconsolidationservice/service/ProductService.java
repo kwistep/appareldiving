@@ -16,13 +16,18 @@ public class ProductService implements IProductService{
 
     public Product saveProduct(Product product)
     {
-        Product savedProduct = productRepository.save(product);
-        return savedProduct;
+        return productRepository.save(product);
     }
 
     public List<Product> getAll()
     {
         return productRepository.findAll();
+    }
+
+    @Override
+    public boolean isFinished(int quantity) {
+        int size = getAll().size();
+        return size == quantity;
     }
 
 }

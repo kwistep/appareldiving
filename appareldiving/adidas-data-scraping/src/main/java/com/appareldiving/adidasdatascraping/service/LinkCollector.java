@@ -16,9 +16,9 @@ public class LinkCollector implements ILinkCollector{
 
 
     @Override
-    public List<String> collectProductLinks(String navigationLink) throws IOException, InputUrlIsNull {
+    public List<String> collectProductLinks(String navigationLink, int quantity) throws IOException, InputUrlIsNull {
         String response = performRequest(navigationLink);
-        List<String> productIds = extractProductIds(response);
+        List<String> productIds = extractProductIds(response, quantity);
         return buildProductLink(productIds);
     }
 
@@ -30,10 +30,21 @@ public class LinkCollector implements ILinkCollector{
         return getRequest.getResponse();
     }
 
-    private List<String> extractProductIds(String response)
+    private List<String> extractProductIds(String response, int quantity)
     {
-        String[] productIds = StringUtils.substringsBetween(response, "productId\\\":\\\"", "\\\",");
-        return Arrays.asList(productIds);
+        String[] productIdsArray = StringUtils.substringsBetween(response, "productId\\\":\\\"", "\\\",");
+
+        List<String> productIds;
+
+        if( productIdsArray.length > quantity )
+        {
+            productIds  = Arrays.asList(productIdsArray).subList(0, quantity);
+        }
+        else
+        {
+            productIds = Arrays.asList(productIdsArray);
+        }
+        return productIds;
     }
 
     private List<String> buildProductLink(List<String> productIds)

@@ -9,6 +9,6 @@ import java.util.List;
 public interface ILinkCollector {
 
 
-    List<String> collectProductLinks(String navigationLink) throws IOException, InputUrlIsNull;
+    List<String> collectProductLinks(String navigationLink, int quantity) throws IOException, InputUrlIsNull;
 
 }

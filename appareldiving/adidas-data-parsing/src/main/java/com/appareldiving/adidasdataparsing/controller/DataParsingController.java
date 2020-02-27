@@ -20,12 +20,12 @@ public class DataParsingController {
     @Autowired
     private DataScrappingControllerProxy proxy;
 
-    @GetMapping("/collect/{quantity}/adidas")
+    @GetMapping("/collect/adidas/{quantity}")
     public List<String> parseData(@PathVariable int quantity)
     {
         logger.info("That's me here!");
 
-        List<String> strings = proxy.collectAndHandOnProductLinks();
+        List<String> strings = proxy.collectAndHandOnProductLinks(quantity);
         return strings;
     }
 

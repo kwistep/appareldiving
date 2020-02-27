@@ -10,5 +10,6 @@ public interface IProductService {
 
     List<Product> getAll();
 
+    boolean isFinished(int quantity);
 
 }
