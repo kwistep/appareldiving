@@ -25,3 +25,33 @@
 | Hystrix  | []  | [] |
 | Exception handling  | [] | [] |
 | Swagger  | []  | [] |
+
+
+ElasticSearch index :
+PUT /appareldiving
+
+json---
+
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3, 
+            "number_of_replicas" : 1 
+        }
+    },
+    "mappings" : {
+        "_doc" : {
+            "properties" : {
+                "productId" : { "type" : "text" },
+                "price" : { "type" : "float" },
+                "salesPrice" : { "type" : "float" },
+                "color" : { "type" : "text" },
+                "orderable" : { "type" : "boolean" },
+                "productUrl" : { "type" : "text" },
+                "productImages" : { "type" : "text" }
+            }
+        }
+    }
+}
+
+----
