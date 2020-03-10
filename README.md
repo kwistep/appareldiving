@@ -43,7 +43,8 @@ docker network create elastic
 
 //In this project, single-node elasticsearch is used as there is no reason to consume more resources for development purposes. Also, elasticsearch:7.6.1 version is used.
 
-docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
+docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "http.host=0.0.0.0" -e "transport.host=0.0.0.0" -e "xpack.security.enabled=false" elasticsearch:7.6.1
+
 
 docker run -d --name kibana --net elastic -p 5601:5601 kibana:7.6.1
 
