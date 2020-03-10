@@ -5,6 +5,7 @@ import com.appareldiving.databaseservice.repository.IOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,14 +15,22 @@ public class OfferService implements IOfferService{
     private IOfferRepository offerRepository;
 
 
-    private List<Offer> saveAllOffers(List<Offer> offers)
+    public List<Offer> saveAllOffers(List<Offer> offers)
     {
-        return offerRepository.saveAll(offers);
+        Iterable<Offer> allSaved = offerRepository.saveAll(offers);
+
+        List<Offer> allOffers = new ArrayList<>();
+        allSaved.forEach(allOffers::add);
+        return allOffers;
     }
 
-    private List<Offer> getAllOffers()
+    public List<Offer> getAllOffers()
     {
-        return offerRepository.findAll();
+        Iterable<Offer> allRetrieved = offerRepository.findAll();
+
+        List<Offer> offers = new ArrayList<>();
+        allRetrieved.forEach(offers::add);
+        return offers;
     }
 
 

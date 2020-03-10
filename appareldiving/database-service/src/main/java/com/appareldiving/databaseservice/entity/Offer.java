@@ -1,45 +1,44 @@
 package com.appareldiving.databaseservice.entity;
 
-import javax.persistence.*;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
-@Table(name = "offers")
+@Document(indexName = "appareldiving")
 public class Offer {
 
     @Id
-    @GeneratedValue
-    private String productId;
-
-    @Column(name = "price")
+    private String offerId;
     private BigDecimal price;
-
-    @Column(name = "sales_price")
     private BigDecimal salesPrice;
-
-    @Column(name = "color")
     private String color;
-
-    @Column(name = "orderable")
     private Boolean orderable;
-
-    @Column(name = "product_url")
     private String productUrl;
+    private String productImages;
 
-    private List<String> productImages;
 
     public Offer() {
     }
 
-    public Offer(BigDecimal price, BigDecimal salesPrice, String productId, String color, Boolean orderable, String productUrl, List<String> productImages) {
+    public Offer(String offerId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, String productImages) {
+        this.offerId = offerId;
         this.price = price;
         this.salesPrice = salesPrice;
-        this.productId = productId;
         this.color = color;
         this.orderable = orderable;
         this.productUrl = productUrl;
         this.productImages = productImages;
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
     }
 
     public BigDecimal getPrice() {
@@ -56,14 +55,6 @@ public class Offer {
 
     public void setSalesPrice(BigDecimal salesPrice) {
         this.salesPrice = salesPrice;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
     }
 
     public String getColor() {
@@ -90,11 +81,11 @@ public class Offer {
         this.productUrl = productUrl;
     }
 
-    public List<String> getProductImages() {
+    public String getProductImages() {
         return productImages;
     }
 
-    public void setProductImages(List<String> productImages) {
+    public void setProductImages(String productImages) {
         this.productImages = productImages;
     }
 }
