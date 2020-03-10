@@ -26,8 +26,11 @@
 | Exception handling  | [] | [] |
 | Swagger  | []  | [] |
 
+# Docker images:
+### ElasticSearch & Kibana
+docker run -d -p 9200:9200 -p 5601:5601 nshou/elasticsearch-kibana
 
-# ElasticSearch index :
+### ElasticSearch index :
 cURL: curl -X PUT "localhost:9200/appareldiving?include_type_name=true&pretty" -H 'Content-Type: application/json' -d' { "settings": { "index": { "number_of_shards": 3, "number_of_replicas": 1 } }, "mappings": { "_doc": { "properties": { "productId": { "type": "text" }, "price": { "type": "float" }, "salesPrice": { "type": "float" }, "color": { "type": "text" }, "orderable": { "type": "boolean" }, "productUrl": { "type": "text" }, "productImages": { "type": "text" } } } } }'
 
 json---
