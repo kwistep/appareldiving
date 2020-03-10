@@ -1,7 +1,7 @@
 package com.appareldiving.dataparsingservice.controller;
 
 import com.appareldiving.dataparsingservice.controller.feign.ConsolidationProxy;
-import com.appareldiving.dataparsingservice.dto.Product;
+import com.appareldiving.dataparsingservice.dto.Offer;
 import com.appareldiving.dataparsingservice.dto.RequestData;
 import com.appareldiving.dataparsingservice.service.IDataConverter;
 import com.appareldiving.dataparsingservice.service.IRequestPerformer;
@@ -29,13 +29,14 @@ public class DataParsingController {
     private ConsolidationProxy proxy;
 
     @PostMapping("/request/{quantity}")
-    public void processData( @RequestBody RequestData requestData, @PathVariable int quantity){
+    public String processData( @RequestBody RequestData requestData, @PathVariable int quantity){
         int requestId = requestData.getRequestId();
         String response = requestPerformer.getResponse(requestData.getLink());
-        Product productData = dataConverter.getProductData(response);
-        logger.info(productData.toString());
-        proxy.saveProduct(productData, quantity);
-        logger.info("Product [" + productData.getProductId() + " - " + productData.getProductUrl() + "] was sent to consolidation center.");
+        Offer offerData = dataConverter.getOfferData(response);
+        logger.info(offerData.toString());
+        proxy.saveProduct(offerData, quantity);
+        logger.info("Product [" + offerData.getOfferId() + " - " + offerData.getProductUrl() + "] was sent to consolidation center.");
+        return "{\"response\":\"Yes\"}";
     }
 
 

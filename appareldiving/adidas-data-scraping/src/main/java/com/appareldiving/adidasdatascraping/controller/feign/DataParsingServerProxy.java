@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface DataParsingServerProxy{
 
     @PostMapping("/request/{quantity}")
-    public void getData(@RequestBody RequestData requestData, @PathVariable int quantity);
+    String processData(@RequestBody RequestData requestData, @PathVariable int quantity);
 
 
 }

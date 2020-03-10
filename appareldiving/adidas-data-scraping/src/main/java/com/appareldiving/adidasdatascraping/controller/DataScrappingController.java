@@ -36,15 +36,15 @@ public class DataScrappingController {
 
         logger.info("[" + links.size() + "] link were collected.");
 
+        int i = 1;
         for (String productLink : links)
         {
             RequestData requestData = new RequestData();
             requestData.setRequestId(productLink.hashCode());
             requestData.setLink(productLink);
 
-            proxy.getData(requestData, quantity);
-
-            logger.info("Request to [" + productLink + "] was sent.");
+            proxy.processData(requestData, quantity);
+            logger.info(i + "Request to [" + productLink + "] was sent.");
         }
 
         return links;

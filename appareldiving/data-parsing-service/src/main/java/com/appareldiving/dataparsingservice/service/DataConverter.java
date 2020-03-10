@@ -1,6 +1,6 @@
 package com.appareldiving.dataparsingservice.service;
 
-import com.appareldiving.dataparsingservice.dto.Product;
+import com.appareldiving.dataparsingservice.dto.Offer;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.slf4j.Logger;
@@ -16,17 +16,17 @@ public class DataConverter implements IDataConverter{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Product getProductData(String response) {
+    public Offer getOfferData(String response) {
 
         DocumentContext json = JsonPath.parse(response);
 
-        Product product = new Product();
+        Offer offer = new Offer();
 
         logger.info(response);
         logger.info(json.toString());
 
 
-        String productId = json.read("$.id");
+        String offerId = json.read("$.id");
         BigDecimal price = json.read("$.price", BigDecimal.class);
         BigDecimal salesPrice = json.read("$.salePrice", BigDecimal.class);
         List<String> productImages = json.read("$..src");
@@ -34,14 +34,14 @@ public class DataConverter implements IDataConverter{
         String color = json.read("$.color");
         Boolean orderable = json.read("$.orderable");
 
-        product.setProductId(productId);
-        product.setPrice(price);
-        product.setSalesPrice(salesPrice);
-        product.setProductImages(productImages);
-        product.setProductUrl(productUrl);
-        product.setColor(color);
-        product.setOrderable(orderable);
+        offer.setOfferId(offerId);
+        offer.setPrice(price);
+        offer.setSalesPrice(salesPrice);
+        offer.setProductImages(productImages);
+        offer.setProductUrl(productUrl);
+        offer.setColor(color);
+        offer.setOrderable(orderable);
 
-        return product;
+        return offer;
     }
 }

@@ -4,23 +4,23 @@ package com.appareldiving.dataparsingservice.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Product {
+public class Offer {
 
     private BigDecimal price;
     private BigDecimal salesPrice;
-    private String productId;
+    private String offerId;
     private String color;
     private Boolean orderable;
     private String productUrl;
     private List<String> productImages;
 
-    public Product() {
+    public Offer() {
     }
 
-    public Product(BigDecimal price, BigDecimal salesPrice, String productId, String color, Boolean orderable, String productUrl, List<String> productImages) {
+    public Offer(BigDecimal price, BigDecimal salesPrice, String offerId, String color, Boolean orderable, String productUrl, List<String> productImages) {
         this.price = price;
         this.salesPrice = salesPrice;
-        this.productId = productId;
+        this.offerId = offerId;
         this.color = color;
         this.orderable = orderable;
         this.productUrl = productUrl;
@@ -43,12 +43,12 @@ public class Product {
         this.salesPrice = salesPrice;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getOfferId() {
+        return offerId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
     }
 
     public String getColor() {

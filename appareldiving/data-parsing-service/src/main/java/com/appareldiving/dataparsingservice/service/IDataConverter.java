@@ -1,9 +1,9 @@
 package com.appareldiving.dataparsingservice.service;
 
-import com.appareldiving.dataparsingservice.dto.Product;
+import com.appareldiving.dataparsingservice.dto.Offer;
 
 public interface IDataConverter {
 
-    public Product getProductData(String response);
+    public Offer getOfferData(String response);
 
 }
