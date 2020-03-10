@@ -1,6 +1,6 @@
 package com.appareldiving.dataconsolidationservice.controller;
 
-import com.appareldiving.dataconsolidationservice.entity.Product;
+import com.appareldiving.dataconsolidationservice.entity.Offer;
 import com.appareldiving.dataconsolidationservice.service.IProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +19,12 @@ public class ConsolidationController {
 
 
     @PostMapping("/save/{quantity}")
-    public void saveProduct(@RequestBody Product product, @PathVariable int quantity)
+    public void saveProduct(@RequestBody Offer offer, @PathVariable int quantity)
     {
 
-        logger.info("Product [" + product.getProductId() + " - " + product.getProductUrl() + "] was received.");
-        productService.saveProduct(product);
-        logger.info("Product [" + product.getProductId() + " - " + product.getProductUrl() + "] was saved.");
+        logger.info("Offer [" + offer.getOfferId() + " - " + offer.getProductUrl() + "] was received.");
+        productService.saveProduct(offer);
+        logger.info("Offer [" + offer.getOfferId() + " - " + offer.getProductUrl() + "] was saved.");
 
         if( productService.isFinished(quantity) )
         {
@@ -35,7 +35,7 @@ public class ConsolidationController {
     }
 
     @GetMapping("/get/all")
-    public List<Product> getAll()
+    public List<Offer> getAll()
     {
         return productService.getAll();
     }

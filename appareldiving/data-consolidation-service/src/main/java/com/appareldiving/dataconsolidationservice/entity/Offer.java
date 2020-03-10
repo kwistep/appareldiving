@@ -7,10 +7,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Document(collection = "products")
-public class Product {
+public class Offer {
 
     @Id
-    private String productId;
+    private String OfferId;
     private BigDecimal price;
     private BigDecimal salesPrice;
     private String color;
@@ -19,11 +19,11 @@ public class Product {
     private List<String> productImages;
 
 
-    public Product() {
+    public Offer() {
     }
 
-    public Product(String productId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, List<String> productImages) {
-        this.productId = productId;
+    public Offer(String OfferId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, List<String> productImages) {
+        this.OfferId = OfferId;
         this.price = price;
         this.salesPrice = salesPrice;
         this.color = color;
@@ -32,12 +32,12 @@ public class Product {
         this.productImages = productImages;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getOfferId() {
+        return OfferId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setOfferId(String offerId) {
+        this.OfferId = offerId;
     }
 
     public BigDecimal getPrice() {

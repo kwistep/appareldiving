@@ -1,14 +1,16 @@
 package com.appareldiving.dataconsolidationservice.service;
 
-import com.appareldiving.dataconsolidationservice.entity.Product;
+import com.appareldiving.dataconsolidationservice.entity.Offer;
 
 import java.util.List;
 
 public interface IProductService {
 
-    Product saveProduct(Product product);
+    Offer saveProduct(Offer offer);
 
-    List<Product> getAll();
+    List<Offer> getAll();
+
+    Offer findById(String id);
 
     boolean isFinished(int quantity);
 

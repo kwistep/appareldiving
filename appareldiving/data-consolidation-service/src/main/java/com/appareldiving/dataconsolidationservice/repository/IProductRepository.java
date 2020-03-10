@@ -1,7 +1,10 @@
 package com.appareldiving.dataconsolidationservice.repository;
 
-import com.appareldiving.dataconsolidationservice.entity.Product;
+import com.appareldiving.dataconsolidationservice.entity.Offer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface IProductRepository extends MongoRepository<Product, String> {
+public interface IProductRepository extends MongoRepository<Offer, String> {
+
+    Offer findByProductId(String id);
+
 }

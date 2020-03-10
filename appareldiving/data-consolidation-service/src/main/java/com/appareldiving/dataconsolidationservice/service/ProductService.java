@@ -1,11 +1,12 @@
 package com.appareldiving.dataconsolidationservice.service;
 
-import com.appareldiving.dataconsolidationservice.entity.Product;
+import com.appareldiving.dataconsolidationservice.entity.Offer;
 import com.appareldiving.dataconsolidationservice.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductService implements IProductService{
@@ -14,14 +15,26 @@ public class ProductService implements IProductService{
     private IProductRepository productRepository;
 
 
-    public Product saveProduct(Product product)
+    public Offer saveProduct(Offer offer)
     {
-        return productRepository.save(product);
+        if(Objects.isNull(findById(offer.getOfferId())))
+        {
+            return productRepository.save(offer);
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    public List<Product> getAll()
+    public List<Offer> getAll()
     {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Offer findById(String id) {
+        return productRepository.findByProductId(id);
     }
 
     @Override
