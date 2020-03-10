@@ -10,7 +10,7 @@ import java.util.List;
 public class Offer {
 
     @Id
-    private String OfferId;
+    private String offerId;
     private BigDecimal price;
     private BigDecimal salesPrice;
     private String color;
@@ -22,8 +22,8 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(String OfferId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, List<String> productImages) {
-        this.OfferId = OfferId;
+    public Offer(String offerId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, List<String> productImages) {
+        this.offerId = offerId;
         this.price = price;
         this.salesPrice = salesPrice;
         this.color = color;
@@ -33,11 +33,11 @@ public class Offer {
     }
 
     public String getOfferId() {
-        return OfferId;
+        return offerId;
     }
 
     public void setOfferId(String offerId) {
-        this.OfferId = offerId;
+        this.offerId = offerId;
     }
 
     public BigDecimal getPrice() {

@@ -34,7 +34,7 @@ public class ProductService implements IProductService{
 
     @Override
     public Offer findById(String id) {
-        return productRepository.findByProductId(id);
+        return productRepository.findByOfferId(id);
     }
 
     @Override

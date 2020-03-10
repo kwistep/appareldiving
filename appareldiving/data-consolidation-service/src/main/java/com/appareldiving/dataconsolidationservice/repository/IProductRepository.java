@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface IProductRepository extends MongoRepository<Offer, String> {
 
-    Offer findByProductId(String id);
+    Offer findByOfferId(String id);
 
 }
