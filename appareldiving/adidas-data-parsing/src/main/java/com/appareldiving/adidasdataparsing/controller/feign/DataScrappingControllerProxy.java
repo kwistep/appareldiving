@@ -9,7 +9,7 @@ import java.util.List;
 @FeignClient(name = "adidas-data-scraping")
 public interface DataScrappingControllerProxy {
 
-    @GetMapping(path = "/adidas/{quantity}")
-    List<String> collectAndHandOnProductLinks(@PathVariable int quantity);
+    @GetMapping(path = "/{parser}/{quantity}")
+    List<String> collectAndHandOnProductLinks(@PathVariable String parser, @PathVariable int quantity);
 
 }
