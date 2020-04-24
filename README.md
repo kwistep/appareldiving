@@ -2,7 +2,7 @@
 
 This application is designed to show well-seattled communication among a number of cloud technologies. How it will work:
 
-<img src="appareldiving.png" width="800" height="800">
+<img src="appareldiving.png" width="900" height="900">
 
 
 Techlogoies used:
