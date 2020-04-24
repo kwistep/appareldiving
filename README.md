@@ -3,7 +3,7 @@
 This application is designed to show well-seattled work among a number of cloud technologies.
 
 How it will work:
-<img src="https://app.diagrams.net?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#G1w5MmLQQ8F46nTobZSW7l1rBr6SUDwp1G" width="100" height="100">
+<img src="appareldiving.png" width="500" height="500">
 
 Techlogoies used:
 - Spring Cloud
