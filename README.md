@@ -1,9 +1,9 @@
 # appareldiving (in progress)
 
-This application is designed to show well-seattled work among a number of cloud technologies.
+This application is designed to show well-seattled communication among a number of cloud technologies. How it will work:
 
-How it will work:
-<img src="appareldiving.png" width="500" height="500">
+<img src="appareldiving.png" width="650" height="650">
+
 
 Techlogoies used:
 - Spring Cloud
