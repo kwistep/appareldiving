@@ -89,3 +89,14 @@ json---
 }
 
 ----
+### Redis
+
+1. docker pull redis
+
+No network required but you also can include it
+2. docker run -it --name redis-server  -p 6379:6379 -d redis
+
+Make sure it works
+3. docker container ls
+
+#### Additional configurations
