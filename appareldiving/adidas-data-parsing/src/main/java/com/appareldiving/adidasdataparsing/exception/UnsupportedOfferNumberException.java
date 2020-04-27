@@ -1,19 +1,19 @@
-package com.appareldiving.adidasdataparsing.response;
+package com.appareldiving.adidasdataparsing.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class UnsupportedNumberOfOffers {
+public class UnsupportedOfferNumberException extends Throwable {
 
     private String message;
 
     private int statusCode;
 
-    public UnsupportedNumberOfOffers(String message) {
+    public UnsupportedOfferNumberException(String message) {
         this.message = "Quantity must be more than 0 and less than 1000. Required quantity is [" + message + "].";
         this.statusCode = HttpStatus.BAD_REQUEST.value();
     }
 
-    public UnsupportedNumberOfOffers() {
+    public UnsupportedOfferNumberException() {
     }
 
     public String getMessage() {

@@ -1,19 +1,19 @@
-package com.appareldiving.adidasdataparsing.response;
+package com.appareldiving.adidasdataparsing.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class UnsupportedParser {
+public class UnsupportedParserException extends Throwable {
 
     private String message;
 
     private int statusCode;
 
-    public UnsupportedParser(String message) {
+    public UnsupportedParserException(String message) {
         this.message = "Parser [" + message + "] is not supported.";
         this.statusCode = HttpStatus.BAD_REQUEST.value();
     }
 
-    public UnsupportedParser() {
+    public UnsupportedParserException() {
     }
 
     public String getMessage() {

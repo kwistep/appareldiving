@@ -2,6 +2,9 @@ package com.appareldiving.adidasdataparsing.parser;
 
 public enum ParserEnum {
 
+    /**
+     *  supported parsers
+     */
     ADIDAS("adidas");
 
 
