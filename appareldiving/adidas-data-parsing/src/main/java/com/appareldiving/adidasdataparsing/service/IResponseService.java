@@ -10,4 +10,7 @@ public interface IResponseService {
 
     List<? super String> getStoredLinks() throws ListNullException;
 
+    boolean removeStoredLinks() throws ListNullException;
+
+
 }

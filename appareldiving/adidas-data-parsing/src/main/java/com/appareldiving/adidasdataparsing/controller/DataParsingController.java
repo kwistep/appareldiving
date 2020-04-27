@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,7 +65,20 @@ public class DataParsingController {
     }
 
     // TODO add remove feature
-//    public ResponseEntity<?> removeStoredLinks
+    @DeleteMapping("/remove")
+    public ResponseEntity<?> removeStoredLinks()
+    {
+        try {
+            boolean removed = responseService.removeStoredLinks();
+            if(removed)
+                return new ResponseEntity<>(Boolean.TRUE, HttpStatus.ACCEPTED);
+            else
+                return new ResponseEntity<>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
+
+        } catch (ListNullException e) {
+            return new ResponseEntity<>(new ListNullException(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
 
     //TODO add hystrix
 

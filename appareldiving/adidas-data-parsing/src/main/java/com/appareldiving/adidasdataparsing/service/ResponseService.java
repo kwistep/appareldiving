@@ -35,10 +35,7 @@ public class ResponseService implements IResponseService{
 
         logger.info("Number of links was collected: [" + links.size() + "].");
 
-        for( Object x : Objects.requireNonNull(redisTemplate.opsForList().range(LINKS, 1, 5)))
-        {
-            logger.info(String.valueOf(x));
-        }
+        redisTemplate.opsForList().rightPushAll(LINKS, links);
 
         logger.info("Links were saved.");
 
@@ -50,7 +47,7 @@ public class ResponseService implements IResponseService{
         if(Objects.isNull(size) )
             throw new ListNullException(LINKS);
 
-        return parseStoredValue(Objects.requireNonNull(redisTemplate.opsForList().range(LINKS, 0, size)));
+        return parseStoredValue(Objects.requireNonNull(redisTemplate.opsForList().range(LINKS, 0, size-1)));
     }
 
     /**
@@ -80,5 +77,18 @@ public class ResponseService implements IResponseService{
 
         return storedLinks;
     }
+
+    public boolean removeStoredLinks() {
+        Long size = redisTemplate.opsForList().size(LINKS);
+        if( Objects.nonNull(size) )
+        {
+            return redisTemplate.delete(LINKS);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }
