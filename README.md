@@ -100,3 +100,6 @@ Make sure it works
 3. docker container ls
 
 #### Additional configurations
+
+data-retriever service: redis port:6379
+data-parsing-adidas service: redis port:6380
