@@ -16,13 +16,13 @@ public class Offer {
     private String color;
     private Boolean orderable;
     private String productUrl;
-    private List<String> productImages;
+    private String productImages;
 
 
     public Offer() {
     }
 
-    public Offer(String offerId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, List<String> productImages) {
+    public Offer(String offerId, BigDecimal price, BigDecimal salesPrice, String color, Boolean orderable, String productUrl, String productImages) {
         this.offerId = offerId;
         this.price = price;
         this.salesPrice = salesPrice;
@@ -80,11 +80,11 @@ public class Offer {
         this.productUrl = productUrl;
     }
 
-    public List<String> getProductImages() {
+    public String getProductImages() {
         return productImages;
     }
 
-    public void setProductImages(List<String> productImages) {
+    public void setProductImages(String productImages) {
         this.productImages = productImages;
     }
 }

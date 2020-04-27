@@ -12,12 +12,12 @@ public class Offer {
     private String color;
     private Boolean orderable;
     private String productUrl;
-    private List<String> productImages;
+    private String productImages;
 
     public Offer() {
     }
 
-    public Offer(BigDecimal price, BigDecimal salesPrice, String offerId, String color, Boolean orderable, String productUrl, List<String> productImages) {
+    public Offer(BigDecimal price, BigDecimal salesPrice, String offerId, String color, Boolean orderable, String productUrl, String productImages) {
         this.price = price;
         this.salesPrice = salesPrice;
         this.offerId = offerId;
@@ -75,11 +75,18 @@ public class Offer {
         this.productUrl = productUrl;
     }
 
-    public List<String> getProductImages() {
+    public String getProductImages() {
         return productImages;
     }
 
     public void setProductImages(List<String> productImages) {
-        this.productImages = productImages;
+        StringBuilder productImagesBuider = new StringBuilder();
+
+        for( String productImage : productImages)
+        {
+            productImagesBuider.append(productImage);
+        }
+
+        this.productImages = productImagesBuider.toString();
     }
 }

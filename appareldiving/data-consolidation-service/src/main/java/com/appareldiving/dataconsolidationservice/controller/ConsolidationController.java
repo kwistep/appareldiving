@@ -1,5 +1,6 @@
 package com.appareldiving.dataconsolidationservice.controller;
 
+import com.appareldiving.dataconsolidationservice.controller.feign.DataControllerProxy;
 import com.appareldiving.dataconsolidationservice.entity.Offer;
 import com.appareldiving.dataconsolidationservice.service.IProductService;
 import org.slf4j.Logger;
@@ -17,6 +18,9 @@ public class ConsolidationController {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private DataControllerProxy proxy;
+
 
     @PostMapping("/save/{quantity}")
     public void saveProduct(@RequestBody Offer offer, @PathVariable int quantity)
@@ -28,8 +32,10 @@ public class ConsolidationController {
 
         if( productService.isFinished(quantity) )
         {
-            //TODO Push DAta to ElasticSearch
             logger.info("FINISHED!");
+            List<Offer> offers = productService.getAll();
+            logger.info("Retrieved [" + offers.size() + "] offers.");
+            proxy.saveData(offers);
         }
 
     }

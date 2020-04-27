@@ -30,22 +30,22 @@ public class DataScrappingController {
     private DataParsingServerProxy proxy;
 
     @GetMapping(path = "/adidas/{quantity}")
-    public List<String> collectAndHandOnProductLinks(@PathVariable int quantity) throws IOException, InputUrlIsNull {
+    public List<String> processLinks(@PathVariable int quantity) throws IOException, InputUrlIsNull {
 
         List<String> links = linkCollector.collectProductLinks(navigationLink, quantity);
 
         logger.info("[" + links.size() + "] link were collected.");
 
-        int i = 1;
-        for (String productLink : links)
-        {
-            RequestData requestData = new RequestData();
-            requestData.setRequestId(productLink.hashCode());
-            requestData.setLink(productLink);
-
-            proxy.processData(requestData, quantity);
-            logger.info(i + "Request to [" + productLink + "] was sent.");
-        }
+//        int i = 1;
+//        for (String productLink : links)
+//        {
+//            RequestData requestData = new RequestData();
+//            requestData.setRequestId(productLink.hashCode());
+//            requestData.setLink(productLink);
+//
+//            proxy.processData(requestData, quantity);
+//            logger.info(i + "Request to [" + productLink + "] was sent.");
+//        }
 
         return links;
     }
