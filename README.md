@@ -62,7 +62,7 @@ docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "d
 docker run -d --name kibana --net elastic -p 5601:5601 kibana:7.6.1
 
 ### ElasticSearch index creation in linux bash:
-curl -X PUT "localhost:9200/appareldiving?include_type_name=true&pretty" -H 'Content-Type: application/json' -d' { "settings": { "index": { "number_of_shards": 3, "number_of_replicas": 1 } }, "mappings": { "_doc": { "properties": { "productId": { "type": "text" }, "price": { "type": "float" }, "salesPrice": { "type": "float" }, "color": { "type": "text" }, "orderable": { "type": "boolean" }, "productUrl": { "type": "text" }, "productImages": { "type": "text" } } } } }'
+curl -X PUT "localhost:9200/appareldiving?include_type_name=true&pretty" -H 'Content-Type: application/json' -d' { "settings": { "index": { "number_of_shards": 3, "number_of_replicas": 1 } }, "mappings": { "offer": { "properties": { "articleId": { "type": "integer" }, "offerId": { "type": "text" }, "price": { "type": "float" }, "salesPrice": { "type": "float" }, "color": { "type": "text" }, "orderable": { "type": "boolean" }, "productUrl": { "type": "text" }, "productImages": { "type": "text" } } } } }'
 
 json---
 
@@ -74,8 +74,9 @@ json---
         }
     },
     "mappings" : {
-        "_doc" : {
+        "offer" : {
             "properties" : {
+                "articleId" : { "type" : "integer" },
                 "productId" : { "type" : "text" },
                 "price" : { "type" : "float" },
                 "salesPrice" : { "type" : "float" },
@@ -100,3 +101,6 @@ Make sure it works
 3. docker container ls
 
 #### Additional configurations
+
+data-retriever service: redis port:6379
+data-parsing-adidas service: redis port:6380
