@@ -62,7 +62,8 @@ docker run -d --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "d
 docker run -d --name kibana --net elastic -p 5601:5601 kibana:7.6.1
 
 ### ElasticSearch index creation in linux bash:
-curl -X PUT "localhost:9200/appareldiving?include_type_name=true&pretty" -H 'Content-Type: application/json' -d' { "settings": { "index": { "number_of_shards": 3, "number_of_replicas": 1 } }, "mappings": { "_doc": { "properties": { "productId": { "type": "text" }, "price": { "type": "float" }, "salesPrice": { "type": "float" }, "color": { "type": "text" }, "orderable": { "type": "boolean" }, "productUrl": { "type": "text" }, "productImages": { "type": "text" } } } } }'
+curl -XGET localhost:9200/appareldiving
+{"appareldiving":{"aliases":{},"mappings":{"properties":{"articleId":{"type":"integer"},"color":{"type":"text"},"orderable":{"type":"boolean"},"price":{"type":"float"},"productId":{"type":"text"},"productImages":{"type":"text"},"productUrl":{"type":"text"},"salesPrice":{"type":"float"}}},"settings":{"index":{"creation_date":"1588053246927","number_of_shards":"3","number_of_replicas":"1","uuid":"1dlznckAR7ig45VCduX77Q","version":{"created":"7060199"},"provided_name":"appareldiving"}}}}
 
 json---
 
@@ -76,6 +77,7 @@ json---
     "mappings" : {
         "_doc" : {
             "properties" : {
+                "articleId" : { "type" : "integer" },
                 "productId" : { "type" : "text" },
                 "price" : { "type" : "float" },
                 "salesPrice" : { "type" : "float" },
