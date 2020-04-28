@@ -1,13 +1,13 @@
-package com.appareldiving.databaseservice.entity;
+package com.appareldiving.dataparsingadidasservice.dto;
 
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Document(indexName = "appareldiving")
+@RedisHash("offer")
 public class Offer {
 
     @Id
@@ -94,7 +94,18 @@ public class Offer {
         return productImages;
     }
 
-    public void setProductImages(String productImages) {
-        this.productImages = productImages;
+    public void setProductImages(List<String> productImages) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String productImage : productImages)
+        {
+            stringBuilder.append(productImage).append("|");
+        }
+
+        String s = stringBuilder.toString();
+        s = s.substring(0, s.length() - 1);
+
+        this.productImages = s;
     }
 }

@@ -1,6 +1,6 @@
 package com.appareldiving.dataretriever.service;
 
-import com.appareldiving.dataretriever.controller.feign.DataScrappingControllerProxy;
+import com.appareldiving.dataretriever.controller.feign.scrapping.DataScrappingAdidasControllerScrappingProxy;
 import com.appareldiving.dataretriever.exception.ListNullException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class ResponseService implements IResponseService{
@@ -21,8 +18,10 @@ public class ResponseService implements IResponseService{
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
     @Autowired
-    private DataScrappingControllerProxy proxy;
+    private DataScrappingAdidasControllerScrappingProxy proxyAdidas;
+
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -31,7 +30,13 @@ public class ResponseService implements IResponseService{
     {
         logger.info("Number of links was required: [" + quantity + "].");
 
-        List<String> links = proxy.collectAndHandOnProductLinks(parser, quantity);
+        List<String> links = new ArrayList<>();
+
+        //TODO make dynamical proxyAdidas
+        if( parser.equals("adidas") )
+        {
+             links = proxyAdidas.collectAndHandOnProductLinks(parser, quantity);
+        }
 
         logger.info("Number of links was collected: [" + links.size() + "].");
 

@@ -2,7 +2,9 @@ package com.appareldiving.dataretriever.util;
 
 import com.appareldiving.dataretriever.parser.ParserEnum;
 
+
 public class ParserUtil {
+
 
     public static boolean containsParser(String parser)
     {
@@ -15,5 +17,6 @@ public class ParserUtil {
 
         return Boolean.FALSE;
     }
+
 
 }

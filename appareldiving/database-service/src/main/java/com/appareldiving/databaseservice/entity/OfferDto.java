@@ -1,16 +1,12 @@
 package com.appareldiving.databaseservice.entity;
 
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-@Document(indexName = "appareldiving")
-public class Offer {
+public class OfferDto {
 
-    @Id
     private int articleId;
     private String offerId;
     private BigDecimal price;
@@ -18,12 +14,12 @@ public class Offer {
     private String color;
     private Boolean orderable;
     private String productUrl;
-    private String productImages;
+    private List<String> productImages;
 
-    public Offer() {
+    public OfferDto() {
     }
 
-    public Offer(int articleId, BigDecimal price, BigDecimal salesPrice, String offerId, String color, Boolean orderable, String productUrl, String productImages) {
+    public OfferDto(int articleId, BigDecimal price, BigDecimal salesPrice, String offerId, String color, Boolean orderable, String productUrl, List<String> productImages) {
         this.articleId = articleId;
         this.price = price;
         this.salesPrice = salesPrice;
@@ -90,11 +86,18 @@ public class Offer {
         this.productUrl = productUrl;
     }
 
-    public String getProductImages() {
+    public List<String> getProductImages() {
         return productImages;
     }
 
     public void setProductImages(String productImages) {
-        this.productImages = productImages;
+
+        if( productImages != null ) {
+            String[] split = productImages.split("|");
+            this.productImages = new ArrayList<>(Arrays.asList(split));
+        }
+        else
+            this.productImages = null;
+
     }
 }
