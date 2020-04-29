@@ -29,7 +29,6 @@ public class ExtractorService implements IExtractorService {
 
         List<String> storedLinks = responseService.getStoredLinks();
 
-
             for(String x : storedLinks)
             {
                 if(x.contains("www.adidas.ca"))

@@ -35,20 +35,17 @@ public class DataRetrieverController {
     @GetMapping("/collect/{parser}/{quantity}")
     public ResponseEntity<?> collectLinks(@PathVariable String parser, @PathVariable int quantity) {
 
-
         try {
             validationService.validate(parser, quantity);
         } catch (UnsupportedParserException | UnsupportedOfferNumberException unsupportedParserException) {
-            if( unsupportedParserException instanceof UnsupportedParserException)
-            {
+            if (unsupportedParserException instanceof UnsupportedParserException) {
+                logger.warn("Invalid request: [" + parser + "] is not supported.");
                 return new ResponseEntity<>(new UnsupportedParserException(String.valueOf(parser)), HttpStatus.BAD_REQUEST);
-            }
-            else
-            {
+            } else {
+                logger.warn("Invalid request: [" + quantity + "] is not supported.");
                 return new ResponseEntity<>(new UnsupportedOfferNumberException(String.valueOf(quantity)), HttpStatus.BAD_REQUEST);
             }
         }
-
 
         List<String> links = responseService.getResponse(parser, quantity);
 
@@ -57,8 +54,7 @@ public class DataRetrieverController {
     }
 
     @GetMapping("/retrieve")
-    public ResponseEntity<?> retrieveStoredLinks()
-    {
+    public ResponseEntity<?> retrieveStoredLinks() {
         try {
             return new ResponseEntity<>(responseService.getStoredLinks(), HttpStatus.ACCEPTED);
         } catch (ListNullException e) {
@@ -68,12 +64,13 @@ public class DataRetrieverController {
 
     // TODO add remove feature
     @DeleteMapping("/remove")
-    public ResponseEntity<?> removeStoredLinks()
-    {
+    public ResponseEntity<?> removeStoredLinks() {
         try {
             boolean removed = responseService.removeStoredLinks();
-            if(removed)
+            if (removed)
+            {
                 return new ResponseEntity<>(Boolean.TRUE, HttpStatus.ACCEPTED);
+            }
             else
                 return new ResponseEntity<>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
 
@@ -83,8 +80,7 @@ public class DataRetrieverController {
     }
 
     @PostMapping("/process")
-    public ResponseEntity<?> extractData()
-    {
+    public ResponseEntity<?> extractData() {
         try {
             extractorService.sendData();
             return new ResponseEntity<>(Boolean.TRUE, HttpStatus.ACCEPTED);
@@ -96,7 +92,7 @@ public class DataRetrieverController {
 
     //TODO add hystrix
 
-    public ResponseEntity<?> defaultData(){
+    public ResponseEntity<?> defaultData() {
         return new ResponseEntity<>(new ArrayList<>(0), HttpStatus.REQUEST_TIMEOUT);
     }
 
