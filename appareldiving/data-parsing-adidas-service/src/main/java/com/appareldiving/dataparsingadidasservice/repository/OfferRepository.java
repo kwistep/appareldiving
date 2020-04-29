@@ -1,4 +1,4 @@
-package com.appareldiving.dataparsingadidasservice.service;
+package com.appareldiving.dataparsingadidasservice.repository;
 
 import com.appareldiving.dataparsingadidasservice.dto.Offer;
 import org.springframework.data.repository.CrudRepository;

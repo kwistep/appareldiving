@@ -3,6 +3,7 @@ package com.appareldiving.dataparsingadidasservice.controller;
 import com.appareldiving.dataparsingadidasservice.controller.feign.DatabaseServiceProxy;
 import com.appareldiving.dataparsingadidasservice.dto.Offer;
 import com.appareldiving.dataparsingadidasservice.dto.RequestData;
+import com.appareldiving.dataparsingadidasservice.exception.EmptyResponseException;
 import com.appareldiving.dataparsingadidasservice.service.IDataConverter;
 import com.appareldiving.dataparsingadidasservice.service.IRedisService;
 import com.appareldiving.dataparsingadidasservice.service.IRequestPerformer;
@@ -37,31 +38,30 @@ public class DataParsingController {
     private DatabaseServiceProxy proxy;
 
     @PostMapping("/process")
-    public boolean processData( @RequestBody RequestData requestData){
+    public boolean processData(@RequestBody RequestData requestData) {
         String response = requestPerformer.getResponse(requestData.getLink());
-        //TODO check exception
-        Offer offerData = dataConverter.getOfferData(response);
+
+        Offer offerData;
+        try {
+            offerData = dataConverter.getOfferData(response);
+        } catch (EmptyResponseException e) {
+            return Boolean.FALSE;
+        }
+        //offerData is never NULL
         logger.info(offerData.toString());
         redisService.saveOffer(offerData);
-//        proxy.saveProduct(offerData, quantity);
-//        logger.info("Product [" + offerData.getOfferId() + " - " + offerData.getProductUrl() + "] was sent to consolidation center.");
         return Boolean.TRUE;
     }
 
     @PostMapping("/save")
-    public boolean sendToDatabase()
-    {
+    public boolean sendToDatabase() {
         List<Offer> offers = redisService.retrieveAll();
         proxy.saveData(offers);
-        //TODO exception
-
-        return true;
-
+        return Boolean.TRUE;
     }
 
     @GetMapping("/retrieve")
-    public ResponseEntity<List<Offer>> retrieveExtractedData()
-    {
+    public ResponseEntity<List<Offer>> retrieveExtractedData() {
         return new ResponseEntity<>(redisService.retrieveAll(), HttpStatus.ACCEPTED);
     }
 

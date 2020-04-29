@@ -1,6 +1,7 @@
 package com.appareldiving.dataparsingadidasservice.service;
 
 import com.appareldiving.dataparsingadidasservice.dto.Offer;
+import com.appareldiving.dataparsingadidasservice.exception.EmptyResponseException;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.slf4j.Logger;
@@ -9,22 +10,26 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
-public class DataConverter implements IDataConverter{
+public class DataConverter implements IDataConverter {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Offer getOfferData(String response) {
+    public Offer getOfferData(String response) throws EmptyResponseException {
 
         DocumentContext json = JsonPath.parse(response);
+
+        if (Objects.isNull(json)) {
+            throw new EmptyResponseException();
+        }
 
         Offer offer = new Offer();
 
         logger.info(response);
         logger.info(json.toString());
-
 
         String offerId = json.read("$.id");
         BigDecimal price = json.read("$.price", BigDecimal.class);
@@ -44,6 +49,8 @@ public class DataConverter implements IDataConverter{
         offer.setProductUrl(productUrl);
         offer.setColor(color);
         offer.setOrderable(orderable);
+
+        logger.info("Offer [" + articleId + "] has been processed.");
 
         return offer;
     }
