@@ -24,8 +24,6 @@ public class DataController {
     @PutMapping(path = "/save")
     public void saveData(@RequestBody List<Offer> offers)
     {
-        logger.info("Saving all offers...");
-        //TODO finish it
         service.saveAllOffers(offers);
     }
 

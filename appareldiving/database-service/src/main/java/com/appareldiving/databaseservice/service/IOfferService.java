@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IOfferService {
 
-    List<Offer> saveAllOffers(List<Offer> offers);
+    void saveAllOffers(List<Offer> offers);
 
     List<OfferDto> getAllOffers();
 
