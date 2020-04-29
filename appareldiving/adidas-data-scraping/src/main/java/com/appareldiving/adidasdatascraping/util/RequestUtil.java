@@ -13,12 +13,13 @@ public class RequestUtil {
 
     public static GetRequest prepareGetRequest(String url) throws IOException, InputUrlIsNull {
         GetRequest getRequest =  new GetRequest(url);
-        Map<String, String> headers = new HashMap<String, String>();
+        Map<String, String> headers = new HashMap<>();
         headers.put("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
         headers.put("accept-encoding", "text/html; charset=UTF-8");
         headers.put("accept-language", "en-US;q=0.9,en;q=0.8");
         headers.put("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
         getRequest.setHeaders(headers);
+
         return getRequest;
     }
 
@@ -35,9 +36,6 @@ public class RequestUtil {
                 }
                 input.close();
                 request.setResponse(response.toString());
-            } else {
-                //TODO logging
-                System.out.println("HTTP request failed.");
             }
 
         } catch (IOException e) {

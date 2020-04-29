@@ -1,7 +1,5 @@
 package com.appareldiving.adidasdatascraping.controller;
 
-import com.appareldiving.adidasdatascraping.controller.feign.DataParsingServerProxy;
-import com.appareldiving.adidasdatascraping.dto.RequestData;
 import com.appareldiving.adidasdatascraping.service.ILinkCollector;
 import com.appareldiving.adidasdatascraping.util.exceptions.InputUrlIsNull;
 import org.slf4j.Logger;
@@ -26,26 +24,12 @@ public class DataScrappingController {
     @Autowired
     private ILinkCollector linkCollector;
 
-    @Autowired
-    private DataParsingServerProxy proxy;
-
     @GetMapping(path = "/adidas/{quantity}")
     public List<String> processLinks(@PathVariable int quantity) throws IOException, InputUrlIsNull {
 
         List<String> links = linkCollector.collectProductLinks(navigationLink, quantity);
 
         logger.info("[" + links.size() + "] link were collected.");
-
-//        int i = 1;
-//        for (String productLink : links)
-//        {
-//            RequestData requestData = new RequestData();
-//            requestData.setRequestId(productLink.hashCode());
-//            requestData.setLink(productLink);
-//
-//            proxy.processData(requestData, quantity);
-//            logger.info(i + "Request to [" + productLink + "] was sent.");
-//        }
 
         return links;
     }
