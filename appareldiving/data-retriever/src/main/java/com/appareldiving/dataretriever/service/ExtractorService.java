@@ -1,6 +1,6 @@
 package com.appareldiving.dataretriever.service;
 
-import com.appareldiving.dataretriever.controller.feign.parsing.DataParsingAdidasServerProxy;
+import com.appareldiving.dataretriever.controller.feign.ZuulProxy;
 import com.appareldiving.dataretriever.dto.RequestData;
 import com.appareldiving.dataretriever.exception.ListNullException;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class ExtractorService implements IExtractorService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private DataParsingAdidasServerProxy proxyAdidas;
+    private ZuulProxy zuulProxy;
 
     @Autowired
     private ResponseService responseService;
@@ -36,7 +36,7 @@ public class ExtractorService implements IExtractorService {
                     RequestData requestData = new RequestData();
                     requestData.setLink(x);
                     requestData.setRequestId(x.hashCode());
-                    proxyAdidas.processData(requestData);
+                    zuulProxy.processData(requestData);
                     logger.info("RequestId: [" + x.hashCode()  + "], link: [" + x + "]");
                 }
             }

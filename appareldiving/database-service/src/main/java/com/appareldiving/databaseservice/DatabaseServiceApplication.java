@@ -8,6 +8,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -15,7 +16,9 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+
 @SpringBootApplication
+@EnableFeignClients("com.appareldiving.databaseservice")
 @EnableEurekaClient
 public class DatabaseServiceApplication {
 

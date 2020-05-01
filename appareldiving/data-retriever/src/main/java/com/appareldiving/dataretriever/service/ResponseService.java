@@ -1,6 +1,6 @@
 package com.appareldiving.dataretriever.service;
 
-import com.appareldiving.dataretriever.controller.feign.scrapping.DataScrappingAdidasControllerScrappingProxy;
+import com.appareldiving.dataretriever.controller.feign.ZuulProxy;
 import com.appareldiving.dataretriever.exception.ListNullException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class ResponseService implements IResponseService {
 
 
     @Autowired
-    private DataScrappingAdidasControllerScrappingProxy proxyAdidas;
+    private ZuulProxy zuulProxy;
 
 
     @Autowired
@@ -31,9 +31,9 @@ public class ResponseService implements IResponseService {
 
         List<String> links = new ArrayList<>();
 
-        //TODO make dynamical proxyAdidas
+        //TODO make dynamical zuulProxy
         if (parser.equals("adidas")) {
-            links = proxyAdidas.collectAndHandOnProductLinks(parser, quantity);
+            links = zuulProxy.collectAndHandOnProductLinks(parser, quantity);
         }
 
         logger.info("Number of links was collected: [" + links.size() + "].");

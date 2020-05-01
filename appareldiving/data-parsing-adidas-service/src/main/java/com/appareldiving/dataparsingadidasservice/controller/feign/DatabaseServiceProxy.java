@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient("database-service")
+@FeignClient("zuul-api-gateway")
 public interface DatabaseServiceProxy {
 
-    @PutMapping("/save")
+    @PutMapping("database-service/save")
     public void saveData(@RequestBody List<Offer> offers);
 }
