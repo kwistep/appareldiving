@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface DataParsingAdidasServerProxy {
 
     @PostMapping("/process")
-    String processData(@RequestBody RequestData requestData);
+    boolean processData(@RequestBody RequestData requestData);
 
 
 }
