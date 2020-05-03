@@ -90,17 +90,23 @@ json---
 }
 
 ----
-### Redis
+## Redis
 
 1. docker pull redis
 
-No network required but you also can include it
 2. docker run -it --name redis-server  -p 6379:6379 -d redis
 
-Make sure it works
-3. docker container ls
+3. docker container ls (just to make sure it works fine)
 
 #### Additional configurations
 
 data-retriever service: redis port:6379
 data-parsing-adidas service: redis port:6380
+
+## RabbitMQ
+
+1. docker pull rabbitmq:3
+
+2. docker run -it --name rabbitmq  -p 5672:5762 -d rabbitmq:3
+
+3. docker container ls (just to make sure it works fine)
