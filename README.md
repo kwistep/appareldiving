@@ -110,3 +110,11 @@ data-parsing-adidas service: redis port:6380
 2. docker run -it --name rabbitmq  -p 5672:5762 -d rabbitmq:3
 
 3. docker container ls (just to make sure it works fine)
+
+## Zipkin
+
+1. docker pull openzipkin/zipkin
+
+2. docker run -it --name zipkin-server -p 9411:9411 -d openzipkin/zipkin RABBIT_URI=localhost
+
+3. docker container ls (just to make sure it works fine)
