@@ -1,6 +1,6 @@
 # appareldiving (in progress)
 
-This application is designed to show well-seattled communication among a number of cloud technologies. How it will work:
+This application is designed to learn how to use a number of cloud technologies. The picture doesn't show all relations but gives a general understanding:
 
 <img src="appareldiving.png" width="900" height="900">
 
